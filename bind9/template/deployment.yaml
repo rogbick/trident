@@ -49,19 +49,3 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          volumeMounts:
-          - name: bind-config
-            mountPath: /etc/bind
-          - name: bind-zone-config
-            mountPath: /var/lib/bind
-      volumes:
-        - name: bind-config
-          configMap:
-            name: bind-config
-            items:
-              - key: named.conf
-                path: named.conf
-        - name: bind-zone-config
-          configMap:
-            name: bind-zone-config
-{{- toYaml .Values.zoneconfigs | nindent 12 }}
